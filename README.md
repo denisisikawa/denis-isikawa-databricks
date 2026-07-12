@@ -17,7 +17,7 @@ Build data infrastructure for Financial Planning & Analysis in a banking environ
 
 ## This portfolio
 
-All notebooks use synthetic/fictional data. Due to banking data confidentiality, I cannot share actual Bradesco pipeline code or financial data. What I can share: structure, approach, and real patterns I apply.
+All notebooks use synthetic/fictional data. **Due to banking data confidentiality, I cannot share actual Bradesco pipeline code or financial data.** What I can share: structure, approach, and real patterns I apply.
 
 ## Projects
 
