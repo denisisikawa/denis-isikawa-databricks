@@ -1,0 +1,7 @@
+pandas>=2.0
+numpy>=1.25
+scikit-learn>=1.3
+requests>=2.31
+
+# Optional: install only if you want to explore the Databricks/Spark pipeline template locally
+pyspark>=3.5
