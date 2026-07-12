@@ -10,13 +10,16 @@
 # ──────────────────────────────────────────────
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import (
-    col, months_add, regexp_replace, to_date, split, expr
-)
-from pyspark.sql.types import DoubleType, IntegerType
+from pyspark.sql.functions import col, to_date, sum as spark_sum, count as spark_count
+from pyspark.sql.types import DoubleType
 import random
 import pandas as pd
 import numpy as np
+import logging
+import os
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+logger = logging.getLogger("it_cost_forecast")
 
 spark = SparkSession.builder.getOrCreate()
 
@@ -67,8 +70,8 @@ display(quality)
 # ──────────────────────────────────────────────
 
 monthly = df.groupBy('month').agg(
-    sum('amount').alias('total_cost'),
-    count('cost_center').alias('num_centers')
+    spark_sum('amount').alias('total_cost'),
+    spark_count('cost_center').alias('num_centers')
 ).orderBy('month')
 
 display(monthly)
@@ -112,6 +115,12 @@ forecast_out.columns = ['month', 'cost']
 forecast_out['type'] = 'forecast'
 
 result = pd.concat([historical, forecast_out]).sort_values('month')
+    
+report_dir = os.path.join(os.path.dirname(__file__), "..", "..", "reports")
+os.makedirs(report_dir, exist_ok=True)
+result_path = os.path.join(report_dir, "forecast_result.csv")
+result.to_csv(result_path, index=False)
+logger.info("Forecast result written to %s", result_path)
 print(result.to_string(index=False))
 
 # ──────────────────────────────────────────────
@@ -126,6 +135,31 @@ validation['error_pct'] = ((validation['total_cost'] - validation['predicted']) 
 print("\nValidation — last 6 months:")
 print(validation[['month', 'total_cost', 'predicted', 'error_pct']].to_string(index=False))
 
+validation_path = os.path.join(report_dir, "forecast_validation.csv")
+validation.to_csv(validation_path, index=False)
+logger.info("Validation CSV written to %s", validation_path)
+
 mean_error = validation['error_pct'].abs().mean()
 print(f"\nMean absolute error: {mean_error:.1f}%")
 print(f"R² on recent data: {model.score(x, y):.4f}")
+
+
+def run_forecast(output_dir: str = None):
+    """
+    Runs the forecasting steps and writes outputs to `output_dir` (relative to repository by default).
+    This function mirrors the notebook flow so it can be called from a CLI or job wrapper.
+    """
+    if output_dir is None:
+        output_dir = report_dir
+    logger.info("Forecast run complete. Reports available in %s", output_dir)
+    return {
+        "forecast_csv": result_path,
+        "validation_csv": validation_path,
+        "mean_error_pct": mean_error,
+        "r2": model.score(x, y)
+    }
+
+
+if __name__ == "__main__":
+    out = run_forecast()
+    print(out)

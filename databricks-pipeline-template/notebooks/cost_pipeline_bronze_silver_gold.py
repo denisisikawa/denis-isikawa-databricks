@@ -12,6 +12,14 @@
 # Reads from source tables/apis, lands in Delta
 # ──────────────────────────────────────────────
 
+import os
+import logging
+from typing import Optional
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+logger = logging.getLogger("it_cost_pipeline")
+
+
 def ingest_bronze(spark, source_table, target_path, date_partition):
     """
     Reads raw source data and writes to bronze Delta table.
@@ -27,6 +35,38 @@ def ingest_bronze(spark, source_table, target_path, date_partition):
         .save()
     
     print(f"Bronze: {source_table} → {target_path}")
+
+
+def generate_synthetic_bronze(spark, months: int = 12):
+    """
+    Generate a synthetic bronze DataFrame for demo/reporting purposes.
+    Returns a Spark DataFrame with columns: load_date, cost_center, category, vendor, amount, month
+    """
+    try:
+        from pyspark.sql import Row
+        import pandas as pd
+        import numpy as np
+        months_range = pd.date_range(end=pd.Timestamp.today(), periods=months, freq='MS')
+        centers = [f"CC-{i:02d}" for i in range(1, 6)]
+        categories = ["Software", "Hardware", "Cloud", "Consulting"]
+        rows = []
+        for m in months_range:
+            for c in centers:
+                for cat in categories:
+                    rows.append(Row(
+                        load_date=m.strftime("%Y-%m-%d"),
+                        cost_center=c,
+                        category=cat,
+                        vendor=f"VENDOR-{(hash(c+cat) % 10) + 1}",
+                        amount=round(10000 * (1 + 0.1 * centers.index(c)) * (1 + 0.05 * categories.index(cat)), 2),
+                        month=m.strftime("%Y-%m-01")
+                    ))
+        df = spark.createDataFrame(rows)
+        logger.info("Synthetic bronze data generated (%d rows)", df.count())
+        return df
+    except Exception as e:
+        logger.warning("Spark not available locally — cannot generate synthetic bronze in Spark: %s", e)
+        raise
 
 # Bronze sources for IT cost scenario:
 #   - SAP cost center table
@@ -70,6 +110,46 @@ def load_silver_cost(spark, bronze_path, silver_path):
     
     print(f"Silver: {silver.count()} records written to {silver_path}")
     return silver
+
+
+def generate_management_reports(spark, silver_df, out_dir: Optional[str] = None):
+    """
+    Produce simple management reports (CSV) from a silver DataFrame.
+    - monthly_by_cc: total by month and cost center
+    - monthly_total: grand total by month
+    """
+    import pandas as pd
+    if out_dir is None:
+        out_dir = os.path.join(os.path.dirname(__file__), "..", "..", "reports")
+    os.makedirs(out_dir, exist_ok=True)
+
+    monthly_by_cc = (
+        silver_df.groupBy("month", "cost_center")
+        .sum("amount")
+        .withColumnRenamed("sum(amount)", "total_amount")
+        .orderBy("month", "cost_center")
+    )
+
+    monthly_total = (
+        silver_df.groupBy("month")
+        .sum("amount")
+        .withColumnRenamed("sum(amount)", "total_it_cost")
+        .orderBy("month")
+    )
+
+    # Convert to pandas and write CSVs
+    try:
+        mbc_pd = monthly_by_cc.toPandas()
+        mt_pd = monthly_total.toPandas()
+        mbc_path = os.path.join(out_dir, "monthly_by_cc.csv")
+        mt_path = os.path.join(out_dir, "monthly_total.csv")
+        mbc_pd.to_csv(mbc_path, index=False)
+        mt_pd.to_csv(mt_path, index=False)
+        logger.info("Management reports written: %s, %s", mbc_path, mt_path)
+        return mbc_path, mt_path
+    except Exception as e:
+        logger.error("Failed to write management reports: %s", e)
+        raise
 
 # ──────────────────────────────────────────────
 # GOLD LAYER — Business-ready aggregates

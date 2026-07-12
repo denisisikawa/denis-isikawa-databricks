@@ -36,16 +36,23 @@ My setup:
 
 import requests
 import os
+import logging
+from typing import Dict, Any, Optional
+import pandas as pd
 
-# Databricks workspace configuration
+# Databricks workspace configuration (optional when running locally)
 DATABRICKS_HOST = os.getenv("DATABRICKS_HOST")
 DATABRICKS_TOKEN = os.getenv("DATABRICKS_TOKEN")
 GENIE_SPACE_ID = os.getenv("GENIE_SPACE_ID")  # created in Databricks UI
 
 HEADERS = {
-    "Authorization": f"Bearer {DATABRICKS_TOKEN}",
+    "Authorization": f"Bearer {DATABRICKS_TOKEN}" if DATABRICKS_TOKEN else "",
     "Content-Type": "application/json"
 }
+
+# Logging setup
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+logger = logging.getLogger("genie_query_handler")
 
 
 def ask_genie(question: str, space_id: str) -> dict:
@@ -64,9 +71,20 @@ def ask_genie(question: str, space_id: str) -> dict:
         }
     }
     
+    if not DATABRICKS_HOST or not DATABRICKS_TOKEN:
+        # Running locally without Databricks — return a synthetic response
+        logger.info("Databricks credentials not found — returning synthetic response")
+        synthetic = {
+            "question": question,
+            "answer": "Synthetic answer: total IT cost for May 2025 was BRL 1,234,567.89",
+            "sql_query": "SELECT SUM(amount) FROM gold.monthly_total WHERE month = '2025-05-01'",
+            "sources": ["gold.monthly_total"]
+        }
+        return synthetic
+
     response = requests.post(url, json=payload, headers=HEADERS)
     response.raise_for_status()
-    
+
     result = response.json()
     return {
         "question": question,
@@ -136,19 +154,53 @@ def log_query(question: str, answer: str, sql: str, analyst: str):
     - Prioritize new gold layer tables
     """
     log_entry = {
-        "timestamp": "CURRENT_TIMESTAMP",  # use current_timestamp() in real code
+        "timestamp": pd.Timestamp.now(),
         "question": question,
         "answer": answer,
         "sql_generated": sql,
         "analyst": analyst,
         "validated": False  # team marks true after review
     }
-    
-    # Append to Delta table
-    # spark.createDataFrame([log_entry]).write \
-    #     .format("delta") \
-    #     .mode("append") \
-    #     .option("path", "/mnt/audit/genie_queries") \
-    #     .save()
-    
-    print("Query logged for review.")
+
+    # For local runs we append to a CSV audit log for easy review
+    audit_path = os.path.join(os.path.dirname(__file__), "..", "..", "reports", "genie_query_audit.csv")
+    os.makedirs(os.path.dirname(audit_path), exist_ok=True)
+    df = pd.DataFrame([log_entry])
+    if not os.path.exists(audit_path):
+        df.to_csv(audit_path, index=False)
+    else:
+        df.to_csv(audit_path, mode="a", header=False, index=False)
+
+    logger.info("Query logged for review: %s", question)
+
+
+def generate_sample_report() -> pd.DataFrame:
+    """
+    Generates a small synthetic report summarizing IT cost by category and month.
+    Returns a pandas DataFrame intended for demo/visualization purposes.
+    """
+    months = pd.date_range(start="2024-06-01", periods=12, freq='MS')
+    categories = ["SOFTWARE", "HARDWARE", "CLOUD", "CONSULTING"]
+    rows = []
+    for m in months:
+        for c in categories:
+            rows.append({
+                "month": m.strftime("%Y-%m-%d"),
+                "category": c,
+                "amount_brl": round(100000 * (1 + 0.1 * (categories.index(c))) * (1 + 0.02 * (months.get_loc(m))), 2)
+            })
+    df = pd.DataFrame(rows)
+    report_path = os.path.join(os.path.dirname(__file__), "..", "..", "reports", "genie_sample_report.csv")
+    os.makedirs(os.path.dirname(report_path), exist_ok=True)
+    df.to_csv(report_path, index=False)
+    logger.info("Synthetic Genie report written to %s", report_path)
+    return df
+
+
+if __name__ == "__main__":
+    # Demo flow when running the script directly
+    q = "What was the total IT cost for May 2025?"
+    res = ask_genie(q, GENIE_SPACE_ID or "demo_space")
+    print("Answer:", res.get("answer"))
+    log_query(res.get("question"), res.get("answer"), res.get("sql_query"), analyst="local_user")
+    generate_sample_report()
