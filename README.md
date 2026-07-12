@@ -6,6 +6,7 @@ Banco Bradesco | 17+ years in data | technical leadership of an 8-person analyti
 
 [![Python CI](https://github.com/denisisikawa/denis-isikawa-databricks/actions/workflows/python-ci.yml/badge.svg)](https://github.com/denisisikawa/denis-isikawa-databricks/actions)
 [![Coverage](https://codecov.io/gh/denisisikawa/denis-isikawa-databricks/branch/main/graph/badge.svg?token=)](https://codecov.io/gh/denisisikawa/denis-isikawa-databricks)
+[![CodeQL](https://github.com/denisisikawa/denis-isikawa-databricks/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/denisisikawa/denis-isikawa-databricks/security/code-scanning)
 
 ---
 
