@@ -4,8 +4,10 @@
 # Data: Synthetic — does not contain Bradesco data
 # Stack: Pandas, scikit-learn (simplified)
 
+import argparse
 import logging
 import os
+import sys
 
 import numpy as np
 import pandas as pd
@@ -19,11 +21,17 @@ report_dir = os.path.join(os.path.dirname(__file__), "..", "..", "reports")
 os.makedirs(report_dir, exist_ok=True)
 
 
-def generate_synthetic_data() -> pd.DataFrame:
-    """Create synthetic monthly IT cost records for the forecast demo."""
+def generate_synthetic_data(history_months: int = 25) -> pd.DataFrame:
+    """Create synthetic monthly IT cost records for the forecast demo.
+
+    Parameters
+    ----------
+    history_months : int
+        Number of historical months to generate for the synthetic series.
+    """
     np.random.seed(42)
 
-    months = pd.date_range(end="2025-01-01", periods=25, freq="MS")
+    months = pd.date_range(end="2025-01-01", periods=history_months, freq="MS")
     data = []
 
     for month_index, month in enumerate(months):
@@ -52,13 +60,13 @@ def build_monthly_summary_pandas(df: pd.DataFrame) -> pd.DataFrame:
     return monthly
 
 
-def run_forecast(output_dir: str = None) -> dict:
+def run_forecast(output_dir: str = None, history_months: int = 25, forecast_horizon: int = 3) -> dict:
     """Executa o fluxo de forecast e escreve os relatórios em CSV."""
     if output_dir is None:
         output_dir = report_dir
 
     logger.info("Running forecast in pandas-only mode.")
-    pdf = generate_synthetic_data()
+    pdf = generate_synthetic_data(history_months)
     monthly_pd = build_monthly_summary_pandas(pdf)
 
     monthly_pd["month_num"] = range(len(monthly_pd))
@@ -73,8 +81,15 @@ def run_forecast(output_dir: str = None) -> dict:
     model.fit(x, y)
 
     last_month = monthly_pd["month"].max()
-    forecast_months = pd.date_range(start=last_month + pd.offsets.MonthBegin(1), periods=3, freq="MS")
-    future_index = np.arange(monthly_pd["month_num"].max() + 1, monthly_pd["month_num"].max() + 4).reshape(-1, 1)
+    forecast_months = pd.date_range(
+        start=last_month + pd.offsets.MonthBegin(1),
+        periods=forecast_horizon,
+        freq="MS",
+    )
+    future_index = np.arange(
+        monthly_pd["month_num"].max() + 1,
+        monthly_pd["month_num"].max() + 1 + forecast_horizon,
+    ).reshape(-1, 1)
 
     forecast = pd.DataFrame({
         "month": forecast_months,
@@ -111,10 +126,46 @@ def run_forecast(output_dir: str = None) -> dict:
         "validation_csv": validation_path,
         "mean_error_pct": mean_error,
         "r2": r2,
+        "history_months": history_months,
+        "forecast_horizon": forecast_horizon,
         "spark_available": SPARK_AVAILABLE,
     }
 
 
-if __name__ == "__main__":
-    output = run_forecast()
+def parse_args(argv=None):
+    parser = argparse.ArgumentParser(
+        description="Run the IT cost forecast demo with synthetic data."
+    )
+    parser.add_argument(
+        "--output-dir",
+        default=report_dir,
+        help="Directory to save forecast and validation CSV reports.",
+    )
+    parser.add_argument(
+        "--months",
+        type=int,
+        default=25,
+        help="Number of historical synthetic months to generate.",
+    )
+    parser.add_argument(
+        "--forecast-horizon",
+        type=int,
+        default=3,
+        help="Number of future months to forecast.",
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv=None):
+    args = parse_args(argv)
+    output = run_forecast(
+        output_dir=args.output_dir,
+        history_months=args.months,
+        forecast_horizon=args.forecast_horizon,
+    )
+    logger.info("Run complete: %s", output)
     print(output)
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

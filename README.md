@@ -107,6 +107,12 @@ python -m pip install -r requirements.txt
 .\run_portfolio.ps1
 ```
 
+3. Run tests:
+
+```powershell
+python -m pytest
+```
+
 3. Explore notebooks in VS Code or Databricks:
 
 - `fp-cost-forecast/notebooks/it_cost_forecast.ipynb`
