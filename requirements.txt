@@ -5,6 +5,8 @@ requests>=2.31
 
 # Testing
 pytest>=8.0
+# Coverage for CI
+pytest-cov>=4.0
 
 # Optional: install only if you want to explore the Databricks/Spark pipeline template locally
 pyspark>=3.5
