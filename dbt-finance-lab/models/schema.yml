@@ -1,0 +1,32 @@
+version: 2
+models:
+  - name: stg_finance_costs
+    description: Normalized synthetic monthly IT expense entries.
+    columns:
+      - name: record_id
+        data_tests: [unique, not_null]
+      - name: month
+        data_tests: [not_null]
+      - name: cost_center
+        data_tests: [not_null]
+      - name: category
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Cloud', 'Licenses', 'Infrastructure']
+      - name: amount_brl
+        data_tests: [not_null]
+      - name: source_system
+        data_tests: [not_null]
+  - name: fct_monthly_costs
+    description: Aggregation by month, center and expense category.
+    columns:
+      - name: cost_key
+        data_tests: [unique, not_null]
+      - name: month
+        data_tests: [not_null]
+      - name: total_amount_brl
+        data_tests: [not_null]
+      - name: transaction_count
+        data_tests: [not_null]

@@ -1,0 +1,16 @@
+name: finance_dbt_lab
+version: '1.0.0'
+config-version: 2
+profile: finance_dbt_lab
+model-paths: ['models']
+seed-paths: ['seeds']
+test-paths: ['tests']
+models:
+  finance_dbt_lab:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
+seeds:
+  finance_dbt_lab:
+    +quote_columns: false

@@ -34,3 +34,10 @@ reports/
 
 # Windows thumbnail cache files
 Thumbs.db
+# dbt project: generated state and local connection profile
+**/target/
+**/logs/
+**/dbt_packages/
+dbt-finance-lab/profiles.yml
+*.duckdb
+*.duckdb.wal

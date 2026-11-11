@@ -1,0 +1,2 @@
+# Reproducible local learning adapter, no cloud credentials required
+dbt-duckdb>=1.9,<2

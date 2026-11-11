@@ -1,0 +1,8 @@
+# Copy as profiles.yml locally. No cloud credentials required.
+finance_dbt_lab:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: finance_lab.duckdb
+      threads: 4

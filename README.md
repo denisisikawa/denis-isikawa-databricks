@@ -181,3 +181,11 @@ Each project contains a notebook/script to execute locally. No real data or Data
 ## Contact
 
 LinkedIn: [linkedin.com/in/denisisikawa](https://www.linkedin.com/in/denisisikawa)
+
+---
+
+## dbt + Databricks: Finance Analytics Engineering Learning Lab
+
+The [dbt Finance Lab](dbt-finance-lab/README.md) is a new **synthetic** FP&A data modeling and quality demonstration, using local dbt + DuckDB, an auditable staging-to-mart flow, dbt tests, CI and a [Databricks certification learning roadmap](dbt-finance-lab/CERTIFICATION_ROADMAP.md).
+
+This is a **learning implementation**, not a deployed Databricks production workflow, and no certification is claimed.
