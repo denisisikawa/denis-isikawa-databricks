@@ -1,0 +1,26 @@
+name: Royal Portfolio Site Check
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'scripts/check_portfolio_site.py'
+      - '.github/workflows/portfolio-site-check.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'scripts/check_portfolio_site.py'
+      - '.github/workflows/portfolio-site-check.yml'
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check HTML semantics and translations
+        run: python scripts/check_portfolio_site.py
+      - name: Check JavaScript syntax
+        run: node --check /tmp/denis-portfolio-check.js

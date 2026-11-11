@@ -154,8 +154,8 @@ const stages={
  en:[["Financial sources","Start with traceable inputs and clear definitions."],["Reusable transformations","Make business rules testable in SQL and data pipelines."],["Quality and controls","Design for reconciliation, traceability and explicit errors."],["Decision-ready analytics","Make metrics and forecasts understandable and useful."]],
  pt:[["Fontes financeiras","Começar com dados rastreáveis e definições claras."],["Transformações reutilizáveis","Tornar regras de negócio testáveis em SQL e pipelines."],["Qualidade e controles","Projetar conciliações, rastreabilidade e falhas explícitas."],["Analytics para decisões","Criar métricas e previsões compreensíveis e úteis."]]
 };
-let lang="en",stage=0;
-try{lang=localStorage.getItem("denis-lang")==="pt"?"pt":"en"}catch(e){}
+let lang=(navigator.language||"en").toLowerCase().startsWith("pt")?"pt":"en",stage=0;
+try{const saved=localStorage.getItem("denis-lang");if(saved==="pt"||saved==="en")lang=saved}catch(e){}
 function renderStage(){document.getElementById("stageTitle").textContent=stages[lang][stage][0];document.getElementById("stageDesc").textContent=stages[lang][stage][1];document.querySelectorAll("[data-stage]").forEach(function(b){b.setAttribute("aria-pressed",String(Number(b.dataset.stage)===stage))})}
 function setLang(next){lang=next;document.documentElement.lang=lang==="pt"?"pt-BR":"en";document.querySelectorAll("[data-en][data-pt]").forEach(function(el){el.textContent=el.getAttribute("data-"+lang)});document.querySelectorAll("[data-lang]").forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.lang===lang))});document.title=lang==="pt"?"Denis Isikawa | Sistemas Financeiros × Arquitetura de Dados":"Denis Isikawa | Finance Systems × Data Architecture";renderStage();try{localStorage.setItem("denis-lang",lang)}catch(e){}}
 document.querySelectorAll("[data-lang]").forEach(function(b){b.addEventListener("click",function(){setLang(b.dataset.lang)})});document.querySelectorAll("[data-stage]").forEach(function(b){b.addEventListener("click",function(){stage=Number(b.dataset.stage);renderStage()})});setLang(lang);
