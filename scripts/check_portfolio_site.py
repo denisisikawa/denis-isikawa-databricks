@@ -38,7 +38,7 @@ assert "prefers-reduced-motion:reduce" in page, "Reduced-motion support missing"
 assert 'name="viewport"' in page, "Viewport missing"
 assert "aria-expanded" in page, "Accessible menu missing"
 assert (ROOT / "docs" / "favicon.svg").is_file(), "Favicon missing"
-assert all("github.com/denisisikawa/" in x or "linkedin.com/in/denisisikawa" in x or "fonts.googleapis.com" in x or "fonts.gstatic.com" in x for x in reader.outgoing), "Unexpected external link"
+assert all("github.com/denisisikawa/" in x or "linkedin.com/in/denisisikawa" in x or "fonts.googleapis.com" in x or "fonts.gstatic.com" in x or x == "https://github.com/denisisikawa" for x in reader.outgoing), "Unexpected external link"
 scripts = re.findall(r"<script(?:\s[^>]*)?>([\s\S]*?)</script>", page)
 assert scripts, "No embedded script"
 Path("/tmp/denis-portfolio-check.js").write_text(scripts[-1], encoding="utf-8")
