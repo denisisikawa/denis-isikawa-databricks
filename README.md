@@ -1,191 +1,173 @@
-# Denis Isikawa — Data Engineering & FP&A Analytics Portfolio
+<div align="center">
 
-**Senior Data Engineering & FP&A Analytics Lead**
+<img src="assets/hero.svg" width="100%" alt="Denis Isikawa — Finance Systems, Data Platforms and Analytics Engineering" />
 
-Banco Bradesco | 17+ years in data | technical leadership of an 8-person analytics team
+<br/>
 
-[![Python CI](https://github.com/denisisikawa/denis-isikawa-databricks/actions/workflows/python-ci.yml/badge.svg)](https://github.com/denisisikawa/denis-isikawa-databricks/actions)
-[![Coverage](https://codecov.io/gh/denisisikawa/denis-isikawa-databricks/branch/main/graph/badge.svg?token=)](https://codecov.io/gh/denisisikawa/denis-isikawa-databricks)
-[![CodeQL](https://github.com/denisisikawa/denis-isikawa-databricks/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/denisisikawa/denis-isikawa-databricks/security/code-scanning)
+**FINANCE TECHNOLOGY · DATA ARCHITECTURE · ANALYTICS ENGINEERING**
 
----
+I connect financial processes, data platforms and automation — turning complex inputs into reliable decision systems.
 
-## Executive overview
+[**Explore the work ↓**](#featured-projects) &nbsp;·&nbsp; [**Architecture ↓**](#the-architecture-mindset) &nbsp;·&nbsp; [**Connect on LinkedIn ↗**](https://www.linkedin.com/in/denisisikawa)
 
-- Portfolio built to showcase finance analytics and data engineering patterns with synthetic data.
-- Focuses on forecasting, pipeline best practices, and AI self-service for FP&A teams.
-- Designed for easy evaluation by recruiters and technical reviewers without exposing confidential data.
+<br/>
 
----
+[![Python CI](https://github.com/denisisikawa/denis-isikawa-databricks/actions/workflows/python-ci.yml/badge.svg)](https://github.com/denisisikawa/denis-isikawa-databricks/actions/workflows/python-ci.yml)
+[![dbt Finance CI](https://github.com/denisisikawa/denis-isikawa-databricks/actions/workflows/dbt-finance-ci.yml/badge.svg)](https://github.com/denisisikawa/denis-isikawa-databricks/actions/workflows/dbt-finance-ci.yml)
+[![License: Portfolio](https://img.shields.io/badge/Data-100%25%20synthetic-56DCC5?style=flat-square&labelColor=122235)](#data-ethics--scope)
 
-## Portfolio snapshot
-
-This repository presents three portfolio demonstrations built with synthetic data and reusable finance analytics patterns.
-
-- Predictive IT cost forecasting for FP&A planning
-- Bronze/Silver/Gold cost data pipeline architecture
-- AI-assisted self-service financial query workflow
-
-> **Important:** all examples use synthetic or fictional data. No real Bradesco data, pipelines, or proprietary business logic are published here.
+</div>
 
 ---
 
-## Why this portfolio stands out
+## Hi, I'm Denis.
 
-- Shows end-to-end FP&A delivery thinking: data ingestion, transformation, forecasting, validation, and analytics.
-- Highlights real engineering patterns used in banking analytics while preserving confidentiality.
-- Demonstrates practical AI query handling, model validation, and reporting automation.
-- Makes it easy to explore with local Python demos and clear project documentation.
+**17+ years across finance, revenue systems, operations and data.** Currently a **Senior BI Analyst III** at Bradesco, working in the capacity of **FP&A Data & Analytics Technical Lead**, providing technical direction and cross-functional alignment for an **8-person team**.
+
+I have built my career at the intersection of **financial controls and technology**: telecom billing and mediation systems, revenue assurance, management information systems, financial analytics, and end-to-end FP&A automation.
+
+What interests me most is not a dashboard by itself. It's the system behind it: **trusted data, clear ownership, sound architecture and decisions people can defend.**
+
+| Perspective | Where I focus |
+| :-- | :-- |
+| **Finance + Revenue** | FP&A, financial close, revenue assurance, billing, cost analysis |
+| **Data platforms** | Databricks, PySpark, Python, SQL, Delta Lake patterns |
+| **Analytics + automation** | Power BI, PowerApps, financial workflows and process controls |
+| **Architecture + leadership** | Quality, governance, integration design, technical direction |
+| **Learning in public** | dbt Analytics Engineering and Databricks certification preparation |
+
+> **Career direction:** Finance Data Architecture · Finance Systems / EPM · Revenue Systems Transformation · Enterprise Analytics. I favor specialist and architecture-focused roles that combine technical depth with business outcomes.
 
 ---
 
 ## Featured projects
 
-### `fp-cost-forecast`
-Problem addressed: FP&A teams need reliable IT cost forecasting and validation for budget planning.
+Four focused demonstrations. Each is intentionally built with **synthetic data** and designed to be reviewed without access to a private employer environment.
 
-What this demo shows:
-- synthetic monthly IT cost generation for multiple cost centers
-- linear regression forecast with recent history and error analysis
-- CSV output for forecast results and validation reporting
-
-Stack: `Python · pandas · scikit-learn`
-
-Project docs: [`fp-cost-forecast/README.md`](fp-cost-forecast/README.md)
-
-### `databricks-pipeline-template`
-Problem addressed: cost data must be ingested, cleansed, and consolidated into a trusted analytics layer.
-
-What this demo shows:
-- Bronze/Silver/Gold Delta Lake pipeline structure
-- schema conformance, duplicate handling, and business-ready aggregates
-- example management reporting exports for FP&A review
-
-Stack: `Databricks · PySpark · Delta Lake · Python`
-
-Project docs: [`databricks-pipeline-template/README.md`](databricks-pipeline-template/README.md)
-
-### `ai-agent-fpa-query`
-Problem addressed: analysts want fast, safe answers without manual ticketing or ad hoc SQL work.
-
-What this demo shows:
-- Databricks Genie query workflow and prompt engineering
-- synthetic fallback mode for local demos without Databricks credentials
-- audit logging pattern for query review and answer validation
-
-Stack: `Python · requests · SQL · API design`
-
-Project docs: [`ai-agent-fpa-query/README.md`](ai-agent-fpa-query/README.md)
-
----
-
-## Why this portfolio works
-
-- Emphasizes design patterns over raw production data
-- Shows how I structure analytics solutions for banking
-- Keeps confidentiality intact with synthetic examples and clear disclaimers
-- Demonstrates end-to-end thinking: data ingestion, transformation, forecasting, and AI self-service
+<table>
+<tr>
+<td width="50%" valign="top">
+  <a href="dbt-finance-lab/README.md"><img width="100%" src="assets/cards/dbt.svg" alt="dbt Finance Lab project art"></a>
+  <h3>01 — Finance Analytics Engineering</h3>
+  <p><b>dbt · DuckDB · SQL · data tests</b></p>
+  <p>Models synthetic finance costs into a documented staging and monthly mart layer, with automated checks for grain, completeness and business constraints.</p>
+  <p><b>Evidence:</b> reproducible local project + GitHub Actions dbt build.</p>
+  <p><a href="dbt-finance-lab/README.md"><b>Explore project →</b></a></p>
+</td>
+<td width="50%" valign="top">
+  <a href="databricks-pipeline-template/README.md"><img width="100%" src="assets/cards/pipeline.svg" alt="Delta Lake Pipeline project art"></a>
+  <h3>02 — Lakehouse Finance Pipeline</h3>
+  <p><b>Databricks · PySpark · Delta Lake</b></p>
+  <p>A notebook-style example of Bronze / Silver / Gold patterns for ingesting, standardizing and aggregating IT-cost data.</p>
+  <p><b>Scope:</b> reference architecture / demonstration, not a production deployment.</p>
+  <p><a href="databricks-pipeline-template/README.md"><b>Explore project →</b></a></p>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+  <a href="fp-cost-forecast/README.md"><img width="100%" src="assets/cards/forecast.svg" alt="FP&A Forecasting project art"></a>
+  <h3>03 — Predictive Cost Forecasting</h3>
+  <p><b>Python · pandas · scikit-learn</b></p>
+  <p>Generates fictional monthly IT-cost histories and explores forecasts, validation and explainable reporting outputs for FP&A.</p>
+  <p><b>Evidence:</b> executable local demo with tests and sample visuals.</p>
+  <p><a href="fp-cost-forecast/README.md"><b>Explore project →</b></a></p>
+</td>
+<td width="50%" valign="top">
+  <a href="ai-agent-fpa-query/README.md"><img width="100%" src="assets/cards/agent.svg" alt="Finance Query AI project art"></a>
+  <h3>04 — AI-Assisted Finance Queries</h3>
+  <p><b>Python · APIs · SQL · Genie patterns</b></p>
+  <p>A self-service query handler exploring request validation, auditability and a synthetic offline fallback for finance analytics.</p>
+  <p><b>Scope:</b> demonstration of integration patterns, not an autonomous production agent.</p>
+  <p><a href="ai-agent-fpa-query/README.md"><b>Explore project →</b></a></p>
+</td>
+</tr>
+</table>
 
 ---
 
-## Repository structure
+## The architecture mindset
 
-- `ai-agent-fpa-query/` — AI agent query handler and prompt engineering demo
-- `databricks-pipeline-template/` — pipeline structure and transformation examples
-- `fp-cost-forecast/` — synthetic forecast model and CSV reporting
-- `reports/` — local output directory for generated demo reports (ignored by Git)
+<img src="assets/architecture.svg" width="100%" alt="Conceptual source-to-decision finance data architecture with transformation and quality controls"/>
+
+**My design principles**
+
+- **Make data trustworthy before making it beautiful.** Validate assumptions, grain and lineage before publishing a metric.
+- **Bridge the business and the platform.** Financial definitions should be translated into repeatable engineering rules.
+- **Keep controls inspectable.** Tests, traceability and clear failure behavior matter as much as successful runs.
+- **Favor reproducibility.** Synthetic data and explicit steps help others judge the work rather than the presentation.
 
 ---
 
-## Run the demos locally
+## Proof of work
 
-1. Install dependencies:
+The portfolio is not just a collection of technology names. Every featured project has documentation, and the runnable components have reproducible instructions.
 
-```powershell
+| Project | What to inspect | Execution |
+| :-- | :-- | :-- |
+| [dbt Finance Lab](dbt-finance-lab/README.md) | SQL models, YAML tests, synthetic seed, CI, [learning roadmap](dbt-finance-lab/CERTIFICATION_ROADMAP.md) | Local dbt + DuckDB |
+| [Lakehouse Pipeline](databricks-pipeline-template/README.md) | Bronze / Silver / Gold notebook, transformation logic | Databricks-oriented template |
+| [Cost Forecasting](fp-cost-forecast/README.md) | Forecast notebook, generated charts, Python tests | Local Python |
+| [Finance Query AI](ai-agent-fpa-query/README.md) | API handler, safety checks, synthetic fallback | Local Python demo |
+
+<details>
+<summary><b>See sample forecasting outputs</b></summary>
+<br/>
+<table>
+<tr>
+<td width="50%"><img src="images/forecast_plot.png" alt="Synthetic IT-cost forecasting example chart" width="100%"/></td>
+<td width="50%"><img src="images/validation_plot.png" alt="Synthetic forecast validation example chart" width="100%"/></td>
+</tr>
+</table>
+<sub>Illustrative charts from fictional input data. They do not represent a production forecast or employer performance.</sub>
+</details>
+
+---
+
+## Reproduce the work
+
+**Python projects**
+
+```bash
 python -m pip install -r requirements.txt
-```
-
-2. Run the forecast demo:
-
-```powershell
-.\run_portfolio.ps1
-```
-
-3. Run tests:
-
-```powershell
 python -m pytest
 ```
 
-3. Explore notebooks in VS Code or Databricks:
+- Windows: `./run_portfolio.ps1` from PowerShell
+- macOS/Linux: `./run_portfolio.sh`
 
-- `fp-cost-forecast/notebooks/it_cost_forecast.ipynb`
-- `databricks-pipeline-template/notebooks/cost_pipeline_bronze_silver_gold.ipynb`
-- `ai-agent-fpa-query/notebooks/genie_query_handler.ipynb`
+**dbt Finance Lab**
 
-> If you are on macOS/Linux, use `./run_portfolio.sh`.
+```bash
+cd dbt-finance-lab
+python -m pip install -r requirements-dbt.txt
+# Copy profiles.example.yml to profiles.yml
+dbt build --profiles-dir .
+```
 
----
-
-## Contact
-
-LinkedIn: [linkedin.com/in/denisisikawa](https://www.linkedin.com/in/denisisikawa)
-
----
-
-## Examples (visual)
-
-Small example plots generated by the demo. If the images are missing, run `scripts/generate_demo_plots.py` to regenerate them locally.
-
-![Forecast example](images/forecast_plot.png)
-
-![Validation example](images/validation_plot.png)
-
-### ai-agent-fpa-query
-An AI agent integration example for FP&A query handling.
-
-- Illustrates Databricks Genie API call patterns
-- Includes prompt engineering guidance and synthetic fallback behavior
-- Focuses on answer validation and safe analytics workflows
-
-Stack: `Python · Databricks Genie · API design · SQL`
-
-Project docs: [`ai-agent-fpa-query/README.md`](ai-agent-fpa-query/README.md)
+See each project's README for the full context, prerequisites and limitations.
 
 ---
 
-## Why this portfolio works
+## Currently sharpening
 
-- Emphasizes design patterns over raw production data
-- Shows how I structure analytics solutions for banking
-- Keeps confidentiality intact with synthetic examples and clear disclaimers
-- Demonstrates end-to-end thinking: data ingestion, transformation, forecasting, and AI self-service
+**dbt / Analytics Engineering:** SQL modeling, reusable transformations, test design, financial reconciliation and lineage.
 
----
-
-## Repository structure
-
-- `ai-agent-fpa-query/` — AI agent query handler and prompt engineering demo
-- `databricks-pipeline-template/` — pipeline structure and transformation examples
-- `fp-cost-forecast/` — synthetic forecast model and CSV reporting
-- `reports/` — local output directory for generated demo reports (ignored by Git)
+**Databricks specialization:** strengthening Delta Lake, platform architecture and Unity Catalog concepts, with a [structured certification study plan](dbt-finance-lab/CERTIFICATION_ROADMAP.md). **No certification is claimed unless earned.**
 
 ---
 
-## Run the demos locally
+## Data ethics & scope
 
-Each project contains a notebook/script to execute locally. No real data or Databricks credentials are required to explore the synthetic workflow.
-
----
-
-## Contact
-
-LinkedIn: [linkedin.com/in/denisisikawa](https://www.linkedin.com/in/denisisikawa)
+This repository uses **fictional or synthetic data only**. Nothing here is a disclosure of Bradesco datasets, internal architecture, confidential controls or other proprietary material. Examples are independent learning and portfolio artifacts; they are not represented as a single live enterprise system.
 
 ---
 
-## dbt + Databricks: Finance Analytics Engineering Learning Lab
+<div align="center">
 
-The [dbt Finance Lab](dbt-finance-lab/README.md) is a new **synthetic** FP&A data modeling and quality demonstration, using local dbt + DuckDB, an auditable staging-to-mart flow, dbt tests, CI and a [Databricks certification learning roadmap](dbt-finance-lab/CERTIFICATION_ROADMAP.md).
+### Build systems people can trust.
 
-This is a **learning implementation**, not a deployed Databricks production workflow, and no certification is claimed.
+**Finance systems × Data engineering × Decision intelligence**
+
+[LinkedIn](https://www.linkedin.com/in/denisisikawa) &nbsp;·&nbsp; [GitHub Profile](https://github.com/denisisikawa) &nbsp;·&nbsp; [Explore the dbt Lab](dbt-finance-lab/README.md)
+
+</div>

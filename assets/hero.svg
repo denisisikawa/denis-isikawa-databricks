@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="510" viewBox="0 0 1400 510" role="img" aria-labelledby="title desc">
+<title id="title">Denis Isikawa — Finance Systems, Data Platforms and Analytics Engineering</title>
+<desc id="desc">Dark navy editorial banner with luminous green and blue accents, a connected data architecture motif, and a professional headline.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#091423"/><stop offset="0.56" stop-color="#10233A"/><stop offset="1" stop-color="#07111D"/></linearGradient>
+  <linearGradient id="accent" x1="0" x2="1" y1="0"><stop offset="0" stop-color="#6AE8CB"/><stop offset="0.56" stop-color="#7EC5FA"/><stop offset="1" stop-color="#9E9CFF"/></linearGradient>
+  <radialGradient id="halo"><stop offset="0" stop-color="#37D7C1" stop-opacity=".16"/><stop offset="1" stop-color="#37D7C1" stop-opacity="0"/></radialGradient>
+  <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0V44" fill="none" stroke="#B4D8ED" stroke-opacity=".07"/></pattern>
+  <filter id="glow"><feGaussianBlur stdDeviation="9"/></filter>
+</defs>
+<rect width="1400" height="510" rx="22" fill="url(#bg)"/>
+<rect width="1400" height="510" rx="22" fill="url(#grid)"/>
+<circle cx="1150" cy="230" r="350" fill="url(#halo)"/>
+<rect x="72" y="70" width="8" height="22" rx="4" fill="#69E3C4"/>
+<text x="96" y="87" fill="#B9CADB" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="600" letter-spacing="3">DENIS ISIKAWA</text>
+<text x="365" y="87" fill="#728A9E" font-family="Segoe UI, Arial, sans-serif" font-size="17" letter-spacing="2">/ ENGINEERING PORTFOLIO</text>
+<text x="74" y="183" fill="#F4F8FE" font-family="Segoe UI, Arial, sans-serif" font-size="65" font-weight="800" letter-spacing="-1.6">FINANCE SYSTEMS.</text>
+<text x="74" y="254" fill="url(#accent)" font-family="Segoe UI, Arial, sans-serif" font-size="65" font-weight="800" letter-spacing="-1.6">DATA PLATFORMS.</text>
+<text x="77" y="310" fill="#C1D3E2" font-family="Segoe UI, Arial, sans-serif" font-size="24">Bridging financial complexity and trustworthy analytics.</text>
+<path d="M75 353H1324" stroke="#8CCEE0" stroke-opacity=".25"/>
+<rect x="74" y="380" width="252" height="57" rx="13" fill="#193047" stroke="#45677B" stroke-opacity=".5"/>
+<rect x="340" y="380" width="262" height="57" rx="13" fill="#193047" stroke="#45677B" stroke-opacity=".5"/>
+<rect x="616" y="380" width="294" height="57" rx="13" fill="#193047" stroke="#45677B" stroke-opacity=".5"/>
+<text x="200" y="415" text-anchor="middle" fill="#E3EFF5" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="600">FP&amp;A + FINANCE TECH</text>
+<text x="471" y="415" text-anchor="middle" fill="#E3EFF5" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="600">DATA ENGINEERING</text>
+<text x="763" y="415" text-anchor="middle" fill="#E3EFF5" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="600">ARCHITECTURE + AI</text>
+<g transform="translate(1080 147)">
+  <path d="M-7 59L72 7L146 55L70 108Z" fill="#55DCC9" fill-opacity=".09" stroke="#67E6CE" stroke-width="2.5"/>
+  <path d="M-7 59L70 108V177L-7 127Z" fill="#62CDBF" fill-opacity=".08" stroke="#67E6CE" stroke-opacity=".55" stroke-width="2"/>
+  <path d="M70 108L146 55V124L70 177Z" fill="#86AFFF" fill-opacity=".08" stroke="#8DADFB" stroke-opacity=".55" stroke-width="2"/>
+  <circle cx="-7" cy="59" r="7" fill="#71EAD2"/><circle cx="72" cy="7" r="7" fill="#71EAD2"/><circle cx="146" cy="55" r="7" fill="#A8A9FF"/><circle cx="70" cy="177" r="7" fill="#7EB8FF"/>
+  <path d="M-70 -22L-7 59M146 55L207 10M70 177L135 209" stroke="#6BE1CD" stroke-opacity=".5" stroke-dasharray="6 9" stroke-width="2"/>
+  <circle cx="-70" cy="-22" r="6" fill="#7FC8F5"/><circle cx="207" cy="10" r="6" fill="#7FC8F5"/><circle cx="135" cy="209" r="6" fill="#7FC8F5"/>
+  <ellipse cx="70" cy="93" rx="120" ry="70" fill="#63EAC9" opacity=".055" filter="url(#glow)"/>
+</g>
+<text x="1316" y="470" text-anchor="end" fill="#6D899C" font-family="Segoe UI, Arial, sans-serif" font-size="15" letter-spacing="2">BUILD • VERIFY • EXPLAIN</text>
+</svg>

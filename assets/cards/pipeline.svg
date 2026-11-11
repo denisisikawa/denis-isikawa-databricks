@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="265" viewBox="0 0 640 265" role="img" aria-label="Delta Pipeline">
+<defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0D192A"/><stop offset="1" stop-color="#172D43"/></linearGradient><pattern id="g" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" fill="none" stroke="#B5CFE2" stroke-opacity=".05"/></pattern></defs>
+<rect width="640" height="265" rx="16" fill="url(#b)"/><rect width="640" height="265" rx="16" fill="url(#g)"/>
+<rect x="29" y="31" width="6" height="23" rx="3" fill="#82B3FA"/>
+<text x="50" y="50" fill="#82B3FA" font-family="Segoe UI,Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="2">LAKEHOUSE PATTERNS</text>
+<text x="32" y="114" fill="#F2F8FF" font-family="Segoe UI,Arial,sans-serif" font-size="31" font-weight="750">Delta Pipeline</text>
+<text x="33" y="147" fill="#BDD2E0" font-family="Segoe UI,Arial,sans-serif" font-size="17">Bronze / Silver / Gold.</text>
+<path d="M30 205H338" stroke="#FFFFFF" stroke-opacity=".15"/>
+<text x="33" y="231" fill="#7694AA" font-family="Segoe UI,Arial,sans-serif" font-size="14" letter-spacing="2">SYNTHETIC FINANCE DATA</text><rect x="394" y="65" width="60" height="61" rx="13" fill="#82B3FA" fill-opacity=".22" stroke="#82B3FA" stroke-width="2"/><rect x="491" y="114" width="60" height="61" rx="13" fill="#82B3FA" fill-opacity=".22" stroke="#82B3FA" stroke-width="2"/><rect x="394" y="163" width="60" height="61" rx="13" fill="#82B3FA" fill-opacity=".22" stroke="#82B3FA" stroke-width="2"/><path d="M454 96H522V114M491 146H423V163" fill="none" stroke="#82B3FA" stroke-width="3" stroke-linecap="round"/><circle cx="522" cy="114" r="5" fill="#82B3FA"/><circle cx="423" cy="163" r="5" fill="#82B3FA"/>
+</svg>

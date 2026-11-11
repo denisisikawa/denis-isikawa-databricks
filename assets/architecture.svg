@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="366" viewBox="0 0 1320 366" role="img" aria-labelledby="t d">
+<title id="t">Finance data architecture capabilities</title>
+<desc id="d">Conceptual layers, from synthetic sources through transformation, validation, and decision support. Different projects illustrate different stages, not a unified deployed system.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#0A1626"/><stop offset="1" stop-color="#14283C"/></linearGradient></defs>
+<rect width="1320" height="366" rx="18" fill="url(#bg)"/>
+<text x="48" y="53" fill="#9DC1D3" font-family="Segoe UI,Arial,sans-serif" font-size="17" letter-spacing="3">THE ENGINEERING THINKING</text>
+<text x="48" y="92" fill="#F3F8FC" font-family="Segoe UI,Arial,sans-serif" font-size="31" font-weight="750">From source complexity to decisions people can trust.</text>
+<g font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="650">
+  <rect x="47" y="139" width="273" height="131" rx="15" fill="#182F43" stroke="#4B8195"/>
+  <text x="67" y="177" fill="#7FE4CD">01 / SOURCES</text><text x="67" y="213" fill="#F0F6FA">Synthetic finance inputs</text><text x="67" y="242" font-size="16" font-weight="400" fill="#A7BDCC">Cost centers · categories</text>
+  <rect x="363" y="139" width="273" height="131" rx="15" fill="#182F43" stroke="#4B8195"/>
+  <text x="383" y="177" fill="#7FE4CD">02 / TRANSFORM</text><text x="383" y="213" fill="#F0F6FA">SQL · dbt · PySpark</text><text x="383" y="242" font-size="16" font-weight="400" fill="#A7BDCC">Typed, reusable models</text>
+  <rect x="679" y="139" width="273" height="131" rx="15" fill="#182F43" stroke="#4B8195"/>
+  <text x="699" y="177" fill="#7FE4CD">03 / TRUST</text><text x="699" y="213" fill="#F0F6FA">Tests · data quality</text><text x="699" y="242" font-size="16" font-weight="400" fill="#A7BDCC">Lineage · control patterns</text>
+  <rect x="995" y="139" width="278" height="131" rx="15" fill="#182F43" stroke="#4B8195"/>
+  <text x="1015" y="177" fill="#7FE4CD">04 / DECIDE</text><text x="1015" y="213" fill="#F0F6FA">FP&amp;A · forecasts · AI</text><text x="1015" y="242" font-size="16" font-weight="400" fill="#A7BDCC">Management insights</text>
+</g>
+<g stroke="#7FE4CD" stroke-width="3" fill="none"><path d="M325 205H354M641 205H670M957 205H986"/></g>
+<g fill="#7FE4CD"><path d="M354 205l-9 -6v12zM670 205l-9 -6v12zM986 205l-9 -6v12z"/></g>
+<text x="48" y="322" fill="#94ABBC" font-family="Segoe UI,Arial,sans-serif" font-size="16">Conceptual portfolio patterns • Projects are independent demonstrations, not one deployed production system.</text>
+</svg>
